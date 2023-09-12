@@ -1,0 +1,45 @@
+﻿@model List<Employee>
+@{
+    ViewBag.Title = "Employee List";
+}
+
+<h2><i class="fa-solid fa-person">Employee List</i></h2>
+<a asp-controller="Employee" asp-action="Add"><span class="fa fa-male"></span>&nbsp;Add New Employee</a>
+<form asp-controller="Employee" asp-action="Index">
+    <p>
+        Name: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th><i class="fa-solid fa-signature">Name</i></th>
+            <th><i class="fa-solid fa-shuttle-space">Title</i></th>
+            <th><i class="fa-solid fa-clock">Start Date</i></th>
+            <th><i class="fa-solid fa-dollar-sign">Pay Rate</i></th>
+            <th><i class="fa-solid fa-clock">Hours</i></th>
+            <th><i class="fa-regular fa-building">Department</i></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.Name</td>
+                <td>@emp.Title</td>
+                <td>@emp.StartDate.ToString("MM/dd/yyyy")</td>
+                <td><i class="fa-solid fa-dollar-sign">@emp.PayRate</i></td>
+                <td>@emp.Hours</td>
+                <td>@emp.Department.DepartmentName</td>
+                <td>
+                    <a asp-controller="Employee" asp-action="Edit"
+                   asp-route-id="@emp.Id">Edit | </a>
+                    <a asp-controller="Employee" asp-action="Delete"
+                   asp-route-id="@emp.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
