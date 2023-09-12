@@ -16,7 +16,7 @@ namespace ManagementPortal.Controllers
             SignInManager<User> signInMngr)
         {
             userManager = userMngr;
-            signInManager = signInMngr;
+            signInManager = signInMngr; 
         }
 
         [HttpGet]
